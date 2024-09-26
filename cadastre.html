@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - OMINISOUND</title>
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/cadastre.css">
+    <link rel="stylesheet" href="styles/banner.css">
+    <link rel="stylesheet" href="styles/rodape.css">
+    <link rel="stylesheet" href="styles/header-studio.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Bebas Neue', sans-serif;
+            color: beige;
+            overflow: hidden;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(270deg, #ff5c5c, #333, #444, #111);
+            background-size: 800% 800%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        .logo {
+            height: 40px;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 0px;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container input[type="tel"] {
+            width: 95%;
+            padding: 5px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .form-container input[type="checkbox"] {
+            margin-bottom: 10px;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgb(168, 43, 43);
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .form-container button:hover {
+            background-color: #ff5c5c;
+        }
+
+        .form-container a {
+            color: #ff5c5c;
+            text-decoration: none;
+        }
+
+        .form-container .google-btn {
+            background-color: #dd4b39;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .form-container .google-btn img {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+        }
+
+    </style>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function () {
+            emailjs.init("YOUR_EMAILJS_USER_ID"); // Substitua "YOUR_EMAILJS_USER_ID" pelo seu ID de usuário do EmailJS
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="background"></div>
+
+    <header class="menu-principal">
+        <!-- Código do cabeçalho -->
+    </header>
+
+    <main>
+        <div class="form-container">
+            <center> <img src="assents/img/logo-botao.png" alt="Logo OMINISOUND" class="logo"></center>
+            <h2>Cadastro</h2>
+            <form id="cadastroForm">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="email">Senha:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" required>
+
+                <label>
+                    <input type="checkbox" id="termos" name="termos" required>
+                    Aceito os <a href="#">termos e condições</a>
+                </label>
+
+                <button type="submit">Cadastrar</button>
+            </form>
+            <button class="google-btn">
+                <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google logo">
+                Acessar com Google
+            </button>
+            <button class="back-btn" onclick="window.location.href='index.html'">Voltar para a Página Inicial</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <!-- Código do rodapé -->
+    </footer>
+
+    <script>
+        document.getElementById('cadastroForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Evita o envio padrão do formulário
+
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+                from_name: nome,
+                email_id: email,
+                telefone: telefone
+
+            })
+                .then(function (response) {
+                    alert('Cadastro enviado com sucesso!', response.status, response.text);
+                }, function (error) {
+                    alert('Falha ao enviar o cadastro.', error);
+                });
+        });
+    </script>
+</body>
+
+</html>
